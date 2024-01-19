@@ -30,16 +30,36 @@ const controller = {
         ? data.filter((pokemon) => pokemon.types.includes(type.toLowerCase()))
         : filteredByName;
 
-      if (filteredByType.length === 0 && type) {
-        throw createError(404, `No Pokémon found for type: ${type}`);
-      }
-      if (filteredByName.length === 0 && search) {
-        throw createError(404, `No Pokémon found for name: ${search}`);
+      const filteredByBoth =
+        search && type
+          ? filteredByType.filter((pokemon) =>
+              pokemon.name.toLowerCase().includes(search.toLowerCase())
+            )
+          : filteredByType;
+
+      // if (filteredByType.length === 0 && type) {
+      //   throw createError(404, `No Pokémon found for type: ${type}`);
+      // }
+      // if (filteredByName.length === 0 && search) {
+      //   throw createError(404, `No Pokémon found for name: ${search}`);
+      // }
+
+      if (filteredByBoth.length === 0) {
+        if (search && type) {
+          throw createError(
+            404,
+            `No Pokémon found for name: ${search} and type: ${type}`
+          );
+        } else if (type) {
+          throw createError(404, `No Pokémon found for type: ${type}`);
+        } else if (search) {
+          throw createError(404, `No Pokémon found for name: ${search}`);
+        }
       }
 
       const startIndex = (parsedPage - 1) * parsedLimit;
       const endIndex = parsedPage * parsedLimit;
-      const paginatedPokemons = filteredByType.slice(startIndex, endIndex);
+      const paginatedPokemons = filteredByBoth.slice(startIndex, endIndex);
 
       // Send response
       sendResponse(res, 200, paginatedPokemons);
