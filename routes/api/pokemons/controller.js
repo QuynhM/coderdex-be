@@ -127,7 +127,7 @@ const controller = {
       const newPokemon = {
         name,
         id,
-        imgUrl,
+        url: imgUrl,
         types,
       };
 
