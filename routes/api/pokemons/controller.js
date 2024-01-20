@@ -108,7 +108,7 @@ const controller = {
 
   addPokemon: (req, res, next) => {
     try {
-      const { name, id, imgUrl, types } = req.body;
+      const { name, id, url, types } = req.body;
 
       //Read data from db.json then parse to JSobject
       let db = fs.readFileSync("db.json", "utf-8");
@@ -128,7 +128,7 @@ const controller = {
         name,
         id,
         types,
-        imgUrl,
+        url,
       };
 
       // Add new Pokemon

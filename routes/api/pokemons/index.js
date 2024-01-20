@@ -10,8 +10,6 @@ const {
 
 // Routes
 router.get("/", controller.getPokemons);
-// router.get("/pokemons/type/:type", controller.getPokemonsByType);
-// router.get("/pokemons/name/:name", controller.getPokemonsByName);
 router.get("/:id", controller.getPokemonsById);
 
 router.post(
