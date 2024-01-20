@@ -13,7 +13,7 @@ const addPokemonBodySchema = Joi.object({
     .max(2)
     .required(),
   id: Joi.number().required(),
-  imgUrl: Joi.string().trim().min(1).required(),
+  url: Joi.string().trim().min(1).required(),
 }).options({ abortEarly: false });
 
 const updatePokemonBodySchema = Joi.object({
