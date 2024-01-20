@@ -3,7 +3,7 @@ const { pokemonTypes } = require("../../../pokemonTypes");
 
 const addPokemonBodySchema = Joi.object({
   name: Joi.string().trim().min(1).required(),
-  type: Joi.array()
+  types: Joi.array()
     .items(
       Joi.string()
         .trim()
@@ -13,12 +13,12 @@ const addPokemonBodySchema = Joi.object({
     .max(2)
     .required(),
   id: Joi.number().required(),
-  // url: Joi.string().trim().min(1).required(),
+  imgUrl: Joi.string().trim().min(1).required(),
 }).options({ abortEarly: false });
 
 const updatePokemonBodySchema = Joi.object({
-  name: Joi.string().trim().min(1),
-  type: Joi.array()
+  name: Joi.string().trim().min(1).required(),
+  types: Joi.array()
     .items(
       Joi.string()
         .trim()
@@ -27,6 +27,7 @@ const updatePokemonBodySchema = Joi.object({
     .min(1)
     .max(2)
     .required(),
+  imgUrl: Joi.string().trim().min(1).required(),
 });
 
 const updatePokemonParamsSchema = Joi.object({
