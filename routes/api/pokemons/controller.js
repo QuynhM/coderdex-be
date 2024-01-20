@@ -37,13 +37,6 @@ const controller = {
             )
           : filteredByType;
 
-      // if (filteredByType.length === 0 && type) {
-      //   throw createError(404, `No Pokémon found for type: ${type}`);
-      // }
-      // if (filteredByName.length === 0 && search) {
-      //   throw createError(404, `No Pokémon found for name: ${search}`);
-      // }
-
       if (filteredByBoth.length === 0) {
         if (search && type) {
           throw createError(
@@ -115,12 +108,6 @@ const controller = {
 
   addPokemon: (req, res, next) => {
     try {
-      // const { error, value } = addPokemonBodySchema.validate(req.body);
-      // if (error) {
-      //   throw createError(400, error);
-      // }
-      // let { name, type, id } = value;
-
       let { name, type, id } = req.body;
 
       //Read data from db.json then parse to JSobject
@@ -164,13 +151,6 @@ const controller = {
   updatePokemon: (req, res, next) => {
     try {
       const pokemonId = parseInt(req.params.id);
-
-      // // Validate the updates using the Joi schema
-      // const { error, value } = updatePokemonBodySchema.validate(req.body);
-
-      // if (error) {
-      //   throw createError(401, error);
-      // }
 
       //put processing
       //Read data from db.json then parse to JSobject

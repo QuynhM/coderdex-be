@@ -7,8 +7,6 @@ const createPokemons = async () => {
   // Filter the first 721 Pokémon
   newData = newData.slice(0, 721);
 
-  let abilitiesData = await csv().fromFile("abilities.csv");
-
   let data = JSON.parse(fs.readFileSync("db.json"));
   newData = newData.map((e, index) => {
     const id = e.id;
@@ -32,7 +30,7 @@ const createPokemons = async () => {
       types,
       height: heightWithUnit,
       weight: weightWithUnit,
-      url: `http://localhost:8001/images/${index + 1}.png`,
+      url: `https://coderdex-be-c86q.onrender.com/images/${index + 1}.png`,
       // url: `./images/${index + 1}.png`,
     };
   });
